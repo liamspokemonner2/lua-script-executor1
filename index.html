@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execute Lua Script</title>
+    <script>
+        function loadAndExecuteLua() {
+            var url = "https://raw.githubusercontent.com/liamspokemonner2/DarkWareV2Scripts/main/DarkWareBattleGroundsScript.Lua";
+
+            fetch(url)
+                .then(response => response.text())
+                .then(luaCode => {
+                    // Execute the Lua code
+                    var func = new Function(luaCode);
+                    func();
+                })
+                .catch(error => {
+                    console.error('Error fetching Lua script:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Execute Lua Script</h1>
+    <button onclick="loadAndExecuteLua()">Load Lua Script</button>
+</body>
+</html>
