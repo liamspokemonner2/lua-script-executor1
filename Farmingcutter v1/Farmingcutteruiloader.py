@@ -12,7 +12,9 @@ print(f"Image path: {image_path}")
 
 # Create the main application window
 root = tk.Tk()
-root.title("Image Viewer")
+
+# Remove the window decorations (top bar)
+root.overrideredirect(True)
 
 # Load the image
 try:
@@ -21,6 +23,11 @@ except tk.TclError as e:
     print(f"Error loading image: {e}")
     root.destroy()
     exit(1)
+
+# Get the image size and set the window size accordingly
+image_width = image.width()
+image_height = image.height()
+root.geometry(f"{image_width}x{image_height}")
 
 # Create a label widget to display the image
 label = tk.Label(root, image=image)
